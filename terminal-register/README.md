@@ -1,0 +1,1 @@
+API to resgister terminals (card machines)
