@@ -1,4 +1,6 @@
 package br.com.carlos.terminalregister.repository;
 
-public class TerminalRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TerminalRepository extends JpaRepository {
 }
