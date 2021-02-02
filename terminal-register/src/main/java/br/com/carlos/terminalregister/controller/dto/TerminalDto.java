@@ -8,25 +8,25 @@ import java.util.stream.Collectors;
 public class TerminalDto {
 
     private Integer logic;
-    private String model; // tem no item 2b, mas nao no 2c
     private String serial;
+    private String model; // é o mesmo dado do vermf
     private Integer sam;
     private String ptid;
     private Integer plat;
     private String version;
-    private Integer mxr;
-    private Integer mxf; // tem no item 2b, mas nao no 2c
+    private Integer mxr; // é o mesmo dado do sam
+    private Integer mxf;
     private String verfm;
 
     public TerminalDto(Terminal terminal) {
         this.logic = terminal.getLogic();
-        this.model = terminal.getModel();
+        this.model = terminal.getVerfm();
         this.serial = terminal.getSerial();
         this.sam = terminal.getSam();
         this.ptid = terminal.getPtid();
         this.plat = terminal.getPlat();
         this.version = terminal.getVersion();
-        this.mxr = terminal.getMxr();
+        this.mxr = terminal.getSam();
         this.mxf = terminal.getMxf();
         this.verfm = terminal.getVerfm();
     }

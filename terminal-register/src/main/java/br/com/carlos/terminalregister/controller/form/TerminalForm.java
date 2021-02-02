@@ -1,23 +1,27 @@
 package br.com.carlos.terminalregister.controller.form;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class TerminalForm {
 
+    // TODO: arrumar o form para se adequar ao post
+
     @NotNull @NotEmpty
     private Integer logic;
     @NotNull @NotEmpty
-    private String model; // tem no item 2b, mas nao no 2c
-    @NotNull @NotEmpty
     private String serial;
+    @NotNull @NotEmpty
+    private String model; // é o mesmo dado do vermf
+    @Min(value = 0)
     private Integer sam;
     private String ptid;
     private Integer plat;
     @NotNull @NotEmpty
     private String version;
-    private Integer mxr;
-    private Integer mxf; // tem no item 2b, mas nao no 2c
+    private Integer mxr; // é o mesmo dado do sam
+    private Integer mxf;
     private String verfm;
 
     public Integer getLogic() {
