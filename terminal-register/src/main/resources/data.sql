@@ -1,0 +1,1 @@
+INSERT INTO terminal (logic, serial, sam, ptid, plat, version, mxr, VERFM) VALUES (44332211, '123', 0, 'F04A2E4088B', 4, '8.00b3', 0, 'PWWIN');
