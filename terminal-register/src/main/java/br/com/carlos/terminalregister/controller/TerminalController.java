@@ -16,6 +16,9 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+// TODO: revisar os endpoints já criados
+// TODO: implementar testes
+
 @RestController
 @RequestMapping("/001/terminal")
 public class TerminalController {
@@ -39,9 +42,9 @@ public class TerminalController {
         return ResponseEntity.notFound().build();
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{logic}")
     @Transactional
-    public ResponseEntity<TerminalDto> atualizar(@PathVariable Integer logic, @RequestBody @Valid TerminalForm form) {
+    public ResponseEntity<TerminalDto> update(@PathVariable Integer logic, @RequestBody TerminalForm form) {
         Optional<Terminal> optional = terminalRepository.findByLogic(logic);
         if (optional.isPresent()) {
             Terminal terminal = form.update(logic, terminalRepository);
@@ -52,13 +55,11 @@ public class TerminalController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<TerminalDto> cadastrar(@RequestBody String inputTerminal, TerminalForm form, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<TerminalDto> create(@RequestBody String inputTerminal, TerminalForm form, UriComponentsBuilder uriBuilder) {
         Terminal terminal = form.convert(inputTerminal);
         terminalRepository.save(terminal);
         URI uri = uriBuilder.path("/{id}").buildAndExpand(terminal.getLogic()).toUri();
         return ResponseEntity.created(uri).body(new TerminalDto(terminal));
     }
 
-    // TODO: revisar os endpoints já criados
-    // TODO: implementar os demais endpoints
 }

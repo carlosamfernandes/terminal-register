@@ -81,13 +81,9 @@ public class Terminal {
         this.version = version;
     }
 
-    public Integer getMxf() {
-        return mxf;
-    }
+    public Integer getMxf() { return mxf; }
 
-    public void setMxf(Integer mxf) {
-        this.mxf = mxf;
-    }
+    public void setMxf(Integer mxf) { this.mxf = mxf; }
 
     public String getVerfm() {
         return verfm;

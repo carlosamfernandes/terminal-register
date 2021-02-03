@@ -115,7 +115,7 @@ public class TerminalForm {
         terminal.setPlat(this.plat);
         terminal.setPtid(this.ptid);
         terminal.setSam(this.sam);
-        terminal.setVerfm(this.verfm);
+        terminal.setVerfm(this.model);
         terminal.setSerial(this.serial);
         terminal.setVersion(this.version);
         return terminal;
@@ -123,7 +123,6 @@ public class TerminalForm {
 
     public Terminal convert (String terminalInput){
         String [] splitted = terminalInput.split(";");
-        //Arrays.toString(splitted);
         Terminal terminal = new Terminal();
         terminal.setLogic(Integer.parseInt(splitted[0]));
         terminal.setSerial(splitted[1]);
