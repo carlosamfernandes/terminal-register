@@ -2,15 +2,17 @@ package br.com.carlos.terminalregister.controller;
 
 
 import br.com.carlos.terminalregister.controller.dto.TerminalDto;
+import br.com.carlos.terminalregister.controller.form.TerminalForm;
 import br.com.carlos.terminalregister.models.Terminal;
 import br.com.carlos.terminalregister.repository.TerminalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.transaction.Transactional;
+import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +38,27 @@ public class TerminalController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<TerminalDto> atualizar(@PathVariable Integer logic, @RequestBody @Valid TerminalForm form) {
+        Optional<Terminal> optional = terminalRepository.findByLogic(logic);
+        if (optional.isPresent()) {
+            Terminal terminal = form.update(logic, terminalRepository);
+            return ResponseEntity.ok(new TerminalDto(terminal));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @PostMapping
+    @Transactional
+    public ResponseEntity<TerminalDto> cadastrar(@RequestBody String inputTerminal, TerminalForm form, UriComponentsBuilder uriBuilder) {
+        Terminal terminal = form.convert(inputTerminal);
+        terminalRepository.save(terminal);
+        URI uri = uriBuilder.path("/{id}").buildAndExpand(terminal.getLogic()).toUri();
+        return ResponseEntity.created(uri).body(new TerminalDto(terminal));
+    }
+
     // TODO: revisar os endpoints já criados
     // TODO: implementar os demais endpoints
 }

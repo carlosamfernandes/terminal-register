@@ -85,7 +85,7 @@ public class Terminal {
         return mxf;
     }
 
-    public void setMxf(Integer mxr) {
+    public void setMxf(Integer mxf) {
         this.mxf = mxf;
     }
 

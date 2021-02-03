@@ -1,5 +1,9 @@
 package br.com.carlos.terminalregister.controller.form;
 
+import br.com.carlos.terminalregister.models.Terminal;
+import br.com.carlos.terminalregister.repository.TerminalRepository;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -103,4 +107,34 @@ public class TerminalForm {
     public void setVerfm(String verfm) {
         this.verfm = verfm;
     }
+
+    public Terminal update(Integer logic, TerminalRepository terminalRepository) {
+        Terminal terminal = terminalRepository.getOne(logic);
+        terminal.setLogic(this.logic);
+        terminal.setMxf(this.mxf);
+        terminal.setPlat(this.plat);
+        terminal.setPtid(this.ptid);
+        terminal.setSam(this.sam);
+        terminal.setVerfm(this.verfm);
+        terminal.setSerial(this.serial);
+        terminal.setVersion(this.version);
+        return terminal;
+    }
+
+    public Terminal convert (String terminalInput){
+        String [] splitted = terminalInput.split(";");
+        //Arrays.toString(splitted);
+        Terminal terminal = new Terminal();
+        terminal.setLogic(Integer.parseInt(splitted[0]));
+        terminal.setSerial(splitted[1]);
+        terminal.setSam(Integer.parseInt(splitted[3])); // 9
+        terminal.setPtid(splitted[4]);
+        terminal.setPlat(Integer.parseInt(splitted[5]));
+        terminal.setVersion(splitted[6]);
+        terminal.setMxf(Integer.parseInt(splitted[8]));
+        terminal.setVerfm(splitted[9]); //3
+
+        return terminal;
+    }
+
 }
