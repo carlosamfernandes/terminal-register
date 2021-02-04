@@ -9,6 +9,7 @@ This project uses an H2 database. In order to run it:
 - run the project from `TerminalRegisterApplication`
 - access local host on port 8080
   
-http://localhost:8080/001/terminal
-
+Local: http://localhost:8080/001/terminal <br>
 H2 DB: http://localhost:8080/h2-console
+
+### **To access the Heroku deployed version: <br>https://terminal-register.herokuapp.com/001/terminal**
