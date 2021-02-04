@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.transaction.Transactional;
-import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -58,7 +57,7 @@ public class TerminalController {
     public ResponseEntity<TerminalDto> create(@RequestBody String inputTerminal, TerminalForm form, UriComponentsBuilder uriBuilder) {
         Terminal terminal = form.convert(inputTerminal);
         terminalRepository.save(terminal);
-        URI uri = uriBuilder.path("/{id}").buildAndExpand(terminal.getLogic()).toUri();
+        URI uri = uriBuilder.path("/001/terminal/{id}").buildAndExpand(terminal.getLogic()).toUri();
         return ResponseEntity.created(uri).body(new TerminalDto(terminal));
     }
 
