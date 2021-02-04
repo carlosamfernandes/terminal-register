@@ -1,6 +1,5 @@
 package br.com.carlos.terminalregister.controller;
 
-import br.com.carlos.terminalregister.controller.dto.TerminalDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.net.URI;
-import java.util.List;
+
+import static org.hamcrest.Matchers.hasSize;
 
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
@@ -24,14 +24,15 @@ public class TerminalControllerTests {
     private MockMvc mockMvc;
 
     @Test
-    public void shouldReturn200WhenGetAllTerminals() throws Exception {
+    public void shouldReturn200AndGetAllTerminals() throws Exception {
         URI uri = new URI("/001/terminal");
         mockMvc.perform(MockMvcRequestBuilders
                 .get(uri)
         ).andExpect(MockMvcResultMatchers
                 .status()
                 .is(200)
-        );
+        ).andExpect(MockMvcResultMatchers
+                .jsonPath("$", hasSize(2)));
     }
 
     @Test

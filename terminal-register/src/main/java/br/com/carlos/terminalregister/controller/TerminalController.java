@@ -1,6 +1,5 @@
 package br.com.carlos.terminalregister.controller;
 
-
 import br.com.carlos.terminalregister.controller.dto.TerminalDto;
 import br.com.carlos.terminalregister.controller.form.TerminalForm;
 import br.com.carlos.terminalregister.models.Terminal;
@@ -14,9 +13,6 @@ import javax.transaction.Transactional;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
-
-// TODO: revisar os endpoints já criados
-// TODO: implementar testes
 
 @RestController
 @RequestMapping("/001/terminal")

@@ -2,7 +2,6 @@ package br.com.carlos.terminalregister.controller.form;
 
 import br.com.carlos.terminalregister.models.Terminal;
 import br.com.carlos.terminalregister.repository.TerminalRepository;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -126,12 +125,12 @@ public class TerminalForm {
         Terminal terminal = new Terminal();
         terminal.setLogic(Integer.parseInt(splitted[0]));
         terminal.setSerial(splitted[1]);
-        terminal.setSam(Integer.parseInt(splitted[3])); // 9
+        terminal.setSam(Integer.parseInt(splitted[3]));
         terminal.setPtid(splitted[4]);
         terminal.setPlat(Integer.parseInt(splitted[5]));
         terminal.setVersion(splitted[6]);
         terminal.setMxf(Integer.parseInt(splitted[8]));
-        terminal.setVerfm(splitted[9]); //3
+        terminal.setVerfm(splitted[9]);
 
         return terminal;
     }
